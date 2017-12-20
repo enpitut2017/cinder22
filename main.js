@@ -42,6 +42,8 @@ var i = 0,
 
 function init() {
     console.log(treeData);
+    
+    
 
     for(var k=0;k<treeData.length;k++) {
         window.sessionStorage.setItem(k,JSON.stringify(treeData[k]));
@@ -52,6 +54,8 @@ function init() {
     for(var k=0;k<sessionStorage.length;k++) {
         tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
     }
+    
+  //  root.children.forEach(collapse);
 
     draw(tmp);
 }
@@ -76,7 +80,7 @@ function reload() {
         tmp.push({name: n, parent: p});
     }
     else{
-        alert("undefined parent node");
+        alert("親ノードが存在しません");
     }
     for(var k=0;k<tmp.length;k++) {
         window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
