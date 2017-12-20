@@ -1,26 +1,40 @@
 
 
 var treeData = [
-        {name: "Word2Map",   parent: ""},
-        {name: "This is a sample", parent: "Word2Map"}
+        {name: "りんご",   parent: ""},
+        {name: "シードル", parent: "りんご"},
+        {name: "青森県", parent: "りんご"},
+    {name: "果実", parent: "りんご"},
+    {name: "キティちゃん", parent: "りんご"},
+    {name: "赤", parent: "りんご"},
+    {name: "子房", parent: "果実"},
+    {name: "野菜", parent: "果実"},
+    {name: "キャラクター", parent: "キティちゃん"},
+    {name: "血液", parent: "赤"},
+    {name: "色", parent: "赤"},
+    {name: "猫", parent: "キティちゃん"},
+    {name: "アサヒビール", parent: "シードル"},
+    {name: "果実酒", parent: "シードル"},
+    {name: "日本", parent: "青森県"},
+    {name: "青函隧道", parent: "青森県"},
 ];
 
 
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
-    width = 960 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#map").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate("
-        + (width/2+90) + "," + (height/2+90) + ")");
+        + (width/2+50) + "," + (height/2+70) + ")");
 
 var i = 0,
     duration = 750,
@@ -58,10 +72,12 @@ function reload() {
         }
     }
     console.log(tmp);
-    if(flag)
+    if(flag){
         tmp.push({name: n, parent: p});
-    else
+    }
+    else{
         alert("undefined parent node");
+    }
     for(var k=0;k<tmp.length;k++) {
         window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
     }

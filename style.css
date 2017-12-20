@@ -16,6 +16,66 @@
     fill: none;
     stroke: #ccc;
     stroke-width: 1.5px;
+    margin: 0px;
 }
 
+#header {
+    background: gray;
+    height: 50px;
+    padding-left: 5px;
+    width: 1200px;;
+}
+#header h1{
+    color: #fff;
+}
+
+#center{
+    position: absolute;
+    width: 1200px;
+    height: 600px;
+}
+
+#map {
+    float: left;
+}
+
+#wordbox{
+    border:1px solid black;
+    float: right;
+    width: 290px;
+    height: 500px;
+    padding: 10px;
+    padding-right:0px;
+    margin-top: 10px;
+}
+
+#list {
+    float: left;
+    height: 300px;
+    width: 300px;
+}
+#list h2{
+    color: black;
+}
+
+#list li{
+    height: 30px;
+    width: 150px;
+    border-left:20px solid green;
+    margin-bottom: 5px;
+    padding: 5px;
+    background: gray;
+    color: white;
+    list-style: none;
+    
+}
+
+#list li:hover{
+    border-left:20px solid lightgreen;
+}
+
+#form{
+    float: left;
+    width:300px;
+}
 

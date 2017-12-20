@@ -2,11 +2,37 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 <body onLoad="init()">
+    <div id="header">
+        <h1>Word2Map</h1>
+    </div>
+<div id="center">    
+    <div id="map">
 <script src="d3.js"></script>
 <script src="lib.js"></script>
 <script src="main.js"></script>
+    </div>
+    
+    <div id="wordbox">
+    <div id="list">
+        <h2>Suggestion</h2>
+        <ul>
+            <li>ニュートン</li>
+            <li>りんごジュース</li>
+        </ul>
+    </div>
+    
+    <div id="form">
+        <h2>Manual Operation</h2>
     <form name="js">
-        Name: <input type="text" name="name" value=""><br>
-        Parent: <input type="text" name="parent" value=""><br>
+        Name   :  <input type="text" name="name" value=""><br>
+        Parent : <input type="text" name="parent" value=""><br>
         <input type="button" value="add" onclick="reload()"><br>
     </form>
+    </div>
+        
+        </div>
+    </div>
+    
+    
+    
+</body>
