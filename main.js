@@ -42,8 +42,6 @@ var i = 0,
 
 function init() {
     console.log(treeData);
-    
-    
 
     for(var k=0;k<treeData.length;k++) {
         window.sessionStorage.setItem(k,JSON.stringify(treeData[k]));
@@ -54,7 +52,6 @@ function init() {
     for(var k=0;k<sessionStorage.length;k++) {
         tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
     }
-    
   //  root.children.forEach(collapse);
 
     draw(tmp);
@@ -67,6 +64,7 @@ function reload() {
     for(var k=0;k<sessionStorage.length;k++) {
         tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
     }
+    window.sessionStorage.clear();
     var n = document.js.name.value;
     var p = document.js.parent.value;
     for(var k=0;k<tmp.length;k++) {
@@ -83,6 +81,38 @@ function reload() {
         alert("親ノードが存在しません");
     }
     for(var k=0;k<tmp.length;k++) {
+        window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
+    }
+    draw(tmp);
+}
+
+function nodeDelete() {
+    var tmp;
+    var queue;
+    tmp = new Array();
+    queue = new Array();
+    for(var k=0;k<sessionStorage.length;k++) {
+        tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
+    }
+    window.sessionStorage.clear();
+    var d = document.delete.deletenode.value;
+    for(var k = 0; k < tmp.length; k++) {
+        if(tmp[k].name===d){
+            queue.push(tmp[k].name);
+            tmp.splice(k,1);
+        }
+    }
+    while(queue.length != 0){
+        for(var k = 0; k < tmp.length; k++){
+            if(tmp[k].parent===queue[0]){
+                queue.push(tmp[k].name);
+                tmp.splice(k,1);
+                k--;
+            }
+        }
+        queue.shift();
+    }
+    for(var k = 0; k < tmp.length; k++) {
         window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
     }
     draw(tmp);
@@ -131,4 +161,3 @@ function untiCollapse(d) {
         d._children = null;
     }
 }
-
