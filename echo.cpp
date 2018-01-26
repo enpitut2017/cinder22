@@ -4,7 +4,9 @@ int main(){
 	string s;
 	while(true){
 		cin >> s;
-		if(s == "end"){cout << "Bye" << endl;return 0;}
-		cout << ">> "<< s << endl;
+		for(int i = 0;i < 4;i++){
+			cout << s << i << endl;
+		}
 	}
 }
+
