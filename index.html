@@ -28,10 +28,12 @@
 
         <td valign="top" width="350">
             <body>
-                <input type="text" name="keyword" placeholder="最初の単語を入力" class="form-control">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-info">生成！</button>
-                </span>
+                <div id="init">
+                    <form name="init">
+                        <input type="text" name="keyword" placeholder="最初の単語を入力" class="form-control">
+                        <input type="button" value="生成" onclick="initTree()" class="btn btn-info"><br>
+                    </form>
+                </div>
 
                 <div id="form">
                     <h2>手動追加</h2>

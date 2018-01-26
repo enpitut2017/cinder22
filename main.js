@@ -1,26 +1,4 @@
 
-
-var treeData = [
-        {name: "りんご",   parent: ""},
-        {name: "シードル", parent: "りんご"},
-        {name: "青森県", parent: "りんご"},
-    {name: "果実", parent: "りんご"},
-    {name: "キティちゃん", parent: "りんご"},
-    {name: "赤", parent: "りんご"},
-    {name: "子房", parent: "果実"},
-    {name: "野菜", parent: "果実"},
-    {name: "キャラクター", parent: "キティちゃん"},
-    {name: "血液", parent: "赤"},
-    {name: "色", parent: "赤"},
-    {name: "猫", parent: "キティちゃん"},
-    {name: "アサヒビール", parent: "シードル"},
-    {name: "果実酒", parent: "シードル"},
-    {name: "日本", parent: "青森県"},
-    {name: "青函隧道", parent: "青森県"},
-];
-
-
-
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
     width = 800 - margin.left - margin.right,
@@ -41,19 +19,18 @@ var i = 0,
     root;
 
 function init() {
-    console.log(treeData);
 
-    for(var k=0;k<treeData.length;k++) {
-        window.sessionStorage.setItem(k,JSON.stringify(treeData[k]));
-    }
+    window.sesstionStorage.clear();
+    draw(tmp);
+}
 
-    var tmp = new Array();
-    console.log(JSON.parse(window.sessionStorage.getItem(0)));
-    for(var k=0;k<sessionStorage.length;k++) {
-        tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
-    }
-  //  root.children.forEach(collapse);
-
+function initTree(){
+    var tmp;
+    tmp = new Array();
+    window.sessionStorage.clear();
+    var n = document.init.keyword.value;
+    tmp.push({name: n});
+    window.sessionStorage.setItem(0, JSON.stringify(tmp[0]));
     draw(tmp);
 }
 
