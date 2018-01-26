@@ -20,8 +20,6 @@ var i = 0,
 
 function init() {
 
-    window.sesstionStorage.clear();
-    draw(tmp);
 }
 
 function initTree(){
