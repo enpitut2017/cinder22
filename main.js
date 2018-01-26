@@ -1,24 +1,5 @@
 
 
-var treeData = [
-        {name: "りんご",   parent: ""},
-        {name: "シードル", parent: "りんご"},
-        {name: "青森県", parent: "りんご"},
-    {name: "果実", parent: "りんご"},
-    {name: "キティちゃん", parent: "りんご"},
-    {name: "赤", parent: "りんご"},
-    {name: "子房", parent: "果実"},
-    {name: "野菜", parent: "果実"},
-    {name: "キャラクター", parent: "キティちゃん"},
-    {name: "血液", parent: "赤"},
-    {name: "色", parent: "赤"},
-    {name: "猫", parent: "キティちゃん"},
-    {name: "アサヒビール", parent: "シードル"},
-    {name: "果実酒", parent: "シードル"},
-    {name: "日本", parent: "青森県"},
-    {name: "青函隧道", parent: "青森県"},
-];
-
 
 
 // Set the dimensions and margins of the diagram
@@ -54,6 +35,16 @@ function init() {
     }
   //  root.children.forEach(collapse);
 
+    draw(tmp);
+}
+
+function initTree(){
+    var tmp;
+    tmp = new Array();
+    window.sessionStorage.clear();
+    var n = document.init.keyword.value;
+    tmp.push({name: n});
+    window.sessionStorage.setItem(0, JSON.stringify(tmp[0]));
     draw(tmp);
 }
 
