@@ -1,7 +1,4 @@
 
-
-
-
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
     width = 800 - margin.left - margin.right,
@@ -22,19 +19,8 @@ var i = 0,
     root;
 
 function init() {
-    console.log(treeData);
 
-    for(var k=0;k<treeData.length;k++) {
-        window.sessionStorage.setItem(k,JSON.stringify(treeData[k]));
-    }
-
-    var tmp = new Array();
-    console.log(JSON.parse(window.sessionStorage.getItem(0)));
-    for(var k=0;k<sessionStorage.length;k++) {
-        tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
-    }
-  //  root.children.forEach(collapse);
-
+    window.sesstionStorage.clear();
     draw(tmp);
 }
 
