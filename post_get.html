@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>formをrubyで受け取る</title>
+    </head>
+    <body>
+        <h1>POSTの場合</h1>
+        <form action="./receive_form.cgi" method="post">
+            <input type="text" name="q">
+            <input type="submit">
+        </form>
+        <h1>GETの場合</h1>
+        <a href="receive_form.cgi?q=hello">クエリ送信</a>
+    </body>
+</html>
