@@ -139,29 +139,29 @@ function untiCollapse(d) {
 }
 
 function getApi(n) {
-    var url = 'http://localhost:8080/receive_form.cgi?q=' + n;
+    var url = 'http://localhost:8000/api/v1/sum?word=' + n;
     return fetch(url,{
         mode: 'cors'
     })
   .then(function(response) {
     if(response.ok) { // ステータスがokならば
-      return response.text(); // レスポンスをテキストとして変換する
+      return response.json(); // レスポンスをテキストとして変換する
     } else {
       throw new Error();
     }
   })
-  .then(function(text) {
+  .then(function(json) {
         var tmp;
         var child;
         tmp = new Array();
         child = new Array();
-        child = text.split(/\n|\r\n/);
-        console.log(child);
+        child = json["result"];
+        console.log(json["result"]);
         for(var k=0;k<sessionStorage.length;k++) {
             tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
         }
         window.sessionStorage.clear();
-        for(var k=0; k<child.length-1;k++) {        
+        for(var k=0; k<child.length;k++) {        
             tmp.push({name: child[k], parent: n});
         }
         for(var k=0;k<tmp.length;k++) {        window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
