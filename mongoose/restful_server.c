@@ -11,7 +11,7 @@ static struct mg_serve_http_opts s_http_server_opts;
 static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
   char word[100];
 
-
+  
   /* Get form variables */
   mg_get_http_var(&hm->body, "word", word, sizeof(word));
 
@@ -20,7 +20,8 @@ static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
 
   /* Compute the result and send it back as a JSON object */
   //result = word;
-  mg_printf_http_chunk(nc, "{ \"result\": %s }", word);
+  //printf("hello");
+  mg_printf_http_chunk(nc, "{ \"result\": \"%s\" }", word);
   mg_send_http_chunk(nc, "", 0); /* Send empty chunk, the end of response */
 }
 
@@ -40,7 +41,6 @@ static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) {
         mg_serve_http(nc, hm, s_http_server_opts); /* Serve static content */
       }
       break;
-      
     default:
       break;
   }

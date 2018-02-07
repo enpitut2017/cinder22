@@ -7189,6 +7189,8 @@ void mg_printf_http_chunk(struct mg_connection *nc, const char *fmt, ...) {
   len = mg_avprintf(&buf, sizeof(mem), fmt, ap);
   va_end(ap);
 
+  printf("%s",buf);
+
   if (len >= 0) {
     mg_send_http_chunk(nc, buf, len);
   }
