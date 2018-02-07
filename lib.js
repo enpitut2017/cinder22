@@ -144,11 +144,13 @@ function update(source) {
     // Toggle children on click.
     function click(d) {
         if (d.children) {
-            console.log("d.children " + d.children);
+            console.log("d.children " + d.id.substring(d.id));
+            nodeDelete(d.id);
             d._children = d.children;
             d.children = null;
         } else {
             console.log("not d.children " + !d.children);
+            getApi(d.id);
             d.children = d._children;
             d._children = null;
         }
