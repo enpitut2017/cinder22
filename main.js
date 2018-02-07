@@ -26,6 +26,7 @@ function init() {
 function initTree(){
     var tmp;
     var n = document.init.keyword.value;
+    window.sessionStorage.clear();
     tmp = new Array();
     tmp.push({name: n});
   window.sessionStorage.setItem(0,JSON.stringify(tmp[0]));
@@ -62,7 +63,7 @@ function reload() {
     draw(tmp);
 }
 
-function nodeDelete() {
+function nodeDelete(d) {
     var tmp;
     var queue;
     tmp = new Array();
@@ -71,7 +72,6 @@ function nodeDelete() {
         tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
     }
     window.sessionStorage.clear();
-    var d = document.delete.deletenode.value;
     for(var k = 0; k < tmp.length; k++) {
         if(tmp[k].name===d){
             queue.push(tmp[k].name);
@@ -151,37 +151,23 @@ function getApi(n) {
     }
   })
   .then(function(text) {
-         var tmp;
+        var tmp;
         var child;
         tmp = new Array();
         child = new Array();
         child = text.split(/\n|\r\n/);
-               console.log(child);
-
-           for(var k=0;k<sessionStorage.length;k++) {
-        tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
-    }
+        console.log(child);
+        for(var k=0;k<sessionStorage.length;k++) {
+            tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
+        }
         window.sessionStorage.clear();
         for(var k=0; k<child.length-1;k++) {        
             tmp.push({name: child[k], parent: n});
         }
-     for(var k=0;k<tmp.length;k++) {        window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
-    }
-    draw(tmp);
-        
+        for(var k=0;k<tmp.length;k++) {        window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
+                                      }
+        draw(tmp);
     })
   .catch(function(error) {console.log(error)});
     
 }
-/*
-async function getApi2(d) {
-    var url = 'http://localhost:8080/receive_form.cgi?q=' + d;
-    const response = await fetch(url,{
-        mode: 'cors'
-    });
-    const text = await response.text();
-  
-    return text.split(/\n|\r\n/);
-}
-
-*/
