@@ -63,9 +63,16 @@ function update(source) {
 
     // Update the node attributes and style
     nodeUpdate.select('circle.node')
-        .attr('r', 10)
+        .attr('r', function(d){return 40/(d.depth+1)})
         .style("fill", function(d) {
-            return d._children ? "lightsteelblue" : "#fff";
+        var x = (d.depth+1)*4;
+        if(x>16)
+            x = 15;
+        var x2 = x.toString(16);
+        var ans = 
+        "#"+x2+x2+x2+x2+'FF';
+        console.log("ans"+ans);
+        return ans;
         })
         .attr('cursor', 'pointer');
 
