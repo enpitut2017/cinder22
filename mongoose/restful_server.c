@@ -13,7 +13,9 @@ static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
 
   
   /* Get form variables */
-  mg_get_http_var(&hm->body, "word", word, sizeof(word));
+  mg_get_http_var(&hm->query_string, "word", word, sizeof(word));
+
+  
 
   /* Send headers */
   mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n");
@@ -21,7 +23,7 @@ static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
   /* Compute the result and send it back as a JSON object */
   //result = word;
   //printf("hello");
-  mg_printf_http_chunk(nc, "{ \"result\": \"%s\" }", word);
+  mg_printf_http_chunk(nc, "{ \"result\": [\"%s\",\"%s\"] }", word, word);
   mg_send_http_chunk(nc, "", 0); /* Send empty chunk, the end of response */
 }
 
@@ -115,6 +117,11 @@ int main(int argc, char *argv[]) {
 
   printf("Starting RESTful server on port %s, serving %s\n", s_http_port,
          s_http_server_opts.document_root);
+  
+  for(int i = 0;i < 1000000;i++){
+    //nop
+  }
+
   for (;;) {
     mg_mgr_poll(&mgr, 1000);
   }
