@@ -31,7 +31,7 @@ function initTree(){
     tmp.push({name: n});
   window.sessionStorage.setItem(0,JSON.stringify(tmp[0]));
     getApi(n);
-    
+
 }
 
 function reload() {
@@ -74,8 +74,12 @@ function nodeDelete(d) {
     window.sessionStorage.clear();
     for(var k = 0; k < tmp.length; k++) {
         if(tmp[k].name===d){
-            queue.push(tmp[k].name);
-            tmp.splice(k,1);
+            if(tmp[k].parent){
+                queue.push(tmp[k].name);
+                tmp.splice(k,1);
+            } else {
+                alert("親ノードは削除できません");
+            }
         }
     }
     while(queue.length != 0){
@@ -161,7 +165,7 @@ function getApi(n) {
             tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
         }
         window.sessionStorage.clear();
-        for(var k=0; k<child.length-1;k++) {        
+        for(var k=0; k<child.length-1;k++) {
             tmp.push({name: child[k], parent: n});
         }
         for(var k=0;k<tmp.length;k++) {        window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));
@@ -169,5 +173,5 @@ function getApi(n) {
         draw(tmp);
     })
   .catch(function(error) {console.log(error)});
-    
+
 }
