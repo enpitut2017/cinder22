@@ -52,7 +52,7 @@ function reload() {
         }
     }
     for(var k=0;k<tmp.length;k++){
-        if(tmp[k].name===p){
+        if(tmp[k].name===n){
             flag2 = false;
         }
     }
