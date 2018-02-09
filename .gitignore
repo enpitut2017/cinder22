@@ -1,2 +1,7 @@
 *.out
 .DS_Store
+pagezero.txt
+sortedlinks.txt
+ysortedlinks.txt
+.vscode/
+restful_server.dSYM/
