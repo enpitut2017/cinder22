@@ -105,8 +105,8 @@ static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
   mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nAccess-Control-Allow-Origin: *\r\n\r\n");
 
   string str = "{ \"result\": [";
-  for(int i = 0;i < result.size() && i < 8;i++){
-    if(i != 0)str += ",";
+  for(int i = 1;i < result.size() && i < 9;i++){
+    if(i != 1)str += ",";
     str += "\"" + v[result[i].second].substr(1,v[result[i].second].size()-2) + "\"";
   }
   str += "] }";
