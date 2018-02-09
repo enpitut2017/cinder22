@@ -68,7 +68,7 @@ void prepare(){
 		if('0' <=  s[1] && s[1] <= '9')continue;
 		m[s] = x;
 		v[x] = s;
-	
+
 		//if(++cnt % 100000 == 0)cout << cnt << endl;
 	}
 	pagezero.close();
@@ -95,14 +95,14 @@ void prepare(){
 
 static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
   char word[100];
-  
+
   /* Get form variables */
   mg_get_http_var(&hm->query_string, "word", word, sizeof(word));
 
   vector<pair<int, int> > result = calc(word);
 
   /* Send headers */
-  mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n");
+  mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nAccess-Control-Allow-Origin: *\r\n\r\n");
 
   string str = "{ \"result\": [";
   for(int i = 0;i < result.size() && i < 8;i++){
@@ -198,13 +198,13 @@ int main(int argc, char *argv[]) {
             *bind_opts.error_string);
     exit(1);
   }
-  prepare();  
+  prepare();
   mg_set_protocol_http_websocket(nc);
   s_http_server_opts.enable_directory_listing = "yes";
 
   printf("Starting RESTful server on port %s, serving %s\n", s_http_port,
          s_http_server_opts.document_root);
-  
+
 
   for (;;) {
     mg_mgr_poll(&mgr, 1000);
