@@ -1,12 +1,12 @@
-SOURCES = $(PROG).c mongoose.c
-CFLAGS = -g -W -Wall -Werror -I../.. -Wno-unused-function $(CFLAGS_EXTRA) $(MODULE_CFLAGS)
+SOURCES = $(PROG).cpp mongoose.cpp
+CFLAGS = -g -W -Wall  -I../.. -Wno-unused-function $(CFLAGS_EXTRA) $(MODULE_CFLAGS)
 
 all: $(PROG)
 
 ifeq ($(OS), Windows_NT)
 # TODO(alashkin): enable SSL in Windows
 CFLAGS += -lws2_32
-CC = gcc
+CC = g++
 else
 CFLAGS += -pthread
 endif
