@@ -107,7 +107,7 @@ static void handle_sum_call(struct mg_connection *nc, struct http_message *hm) {
   string str = "{ \"result\": [";
   for(int i = 0;i < result.size() && i < 8;i++){
     if(i != 0)str += ",";
-    str += "\"" + v[result[i].second] + "\"";
+    str += "\"" + v[result[i].second].substr(1,v[result[i].second].size()-2) + "\"";
   }
   str += "] }";
   mg_printf_http_chunk(nc, "%s", str.c_str());
