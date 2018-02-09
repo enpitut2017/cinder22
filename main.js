@@ -174,6 +174,15 @@ function getApi(n) {
             tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
         }
         window.sessionStorage.clear();
+        
+        for(var k=0; k<tmp.length;k++){
+            for(var l=0; l<child.length; l++){
+                if(tmp[k].name===child[l]){
+                    child.splice(l,1);
+                    break;
+                }
+            }
+        }
 
         for(var k=0; k<child.length;k++) {        
             tmp.push({name: child[k], parent: n});
