@@ -3,6 +3,7 @@
  * All rights reserved
  */
 #include<iostream>
+#include<algorithm>
 #include<sstream>
 #include<fstream>
 #include<map>
