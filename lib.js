@@ -12,6 +12,13 @@ function update(source) {
     // Compute the new tree layout.
     var nodes = treeData.descendants(),
         links = treeData.descendants().slice(1);
+    
+    var tooltip = d3.select("body")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden");
 
     // Normalize for fixed-depth.
     nodes.forEach(function(d){ d.y = d.depth * 180});
@@ -28,8 +35,7 @@ function update(source) {
         .attr("transform", function(d) {
             return "translate(" + radialPointY(source.x0,source.y0) + "," 
                 + radialPointX(source.x0,source.y0) + ")";
-        })
-        .on('click', click);
+        });
 
     // Add Circle for the nodes
     nodeEnter.append('circle')
@@ -37,7 +43,11 @@ function update(source) {
         .attr('r', 1e-6)
         .style("fill", function(d) {
             return d._children ? "lightsteelblue" : "#fff";
-        });
+        })
+    .on('click', click)
+        .on('mouseover',over)
+        .on('mouseout',out)
+        .on('mousemove',move);
 
     // Add labels for the nodes
     nodeEnter.append('text')
@@ -162,6 +172,20 @@ function update(source) {
             d._children = null;
         }
         update(d);
+    }
+    
+    function over(d) {
+        tooltip.style("visibility", "visible");
+    }
+    function out(d) {
+        tooltip.style("visibility", "hidden");
+    }
+    function move(d) {   
+		tooltip
+		.style("top", "px")
+		.style("left","px")
+		.html("<h3>表示したいモノ</h3>");
+        console.log("move");
     }
 }
 
