@@ -71,7 +71,6 @@ function update(source) {
         var x2 = x.toString(16);
         var ans = 
         "#"+x2+x2+x2+x2+'FF';
-        console.log("ans"+ans);
         return ans;
         })
         .attr('cursor', 'pointer');
@@ -153,13 +152,9 @@ function update(source) {
         if (d.children) {
             console.log("d.children " + d.id.substring(d.id));
             nodeDelete(d.id);
-            d._children = d.children;
-            d.children = null;
         } else {
             console.log("not d.children " + !d.children);
-            getApi(d.id);
-            d.children = d._children;
-            d._children = null;
+            getApi(d.id); 
         }
         update(d);
     }
