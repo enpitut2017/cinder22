@@ -36,7 +36,8 @@ function initTree(){
 
 function reload() {
     var tmp;
-    var flag = false;
+    var flag = false;//入力された親ノードが存在するか
+    var flag2 = true;//入力された子ノードがまだ存在しないか
     tmp = new Array();
     for(var k=0;k<sessionStorage.length;k++) {
         tmp.push(JSON.parse(window.sessionStorage.getItem(k)));
@@ -44,18 +45,26 @@ function reload() {
     window.sessionStorage.clear();
     var n = document.js.name.value;
     var p = document.js.parent.value;
-    for(var k=0;k<tmp.length;k++) {
+    for(var k=0;k<tmp.length;k++) {//親ノードが存在するか
         if(tmp[k].name===p){
             flag = true;
             console.log(flag);
         }
     }
+    for(var k=0;k<tmp.length;k++){
+        if(tmp[k].name===p){
+            flag2 = false;
+        }
+    }
     console.log(tmp);
-    if(flag){
+    if(flag && flag2){
         tmp.push({name: n, parent: p});
     }
-    else{
+    else if(!flag){
         alert("親ノードが存在しません");
+    }
+    else {
+        alert("その単語はすでに存在します");
     }
     for(var k=0;k<tmp.length;k++) {
         window.sessionStorage.setItem(k,JSON.stringify(tmp[k]));

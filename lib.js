@@ -12,7 +12,7 @@ function update(source) {
     // Compute the new tree layout.
     var nodes = treeData.descendants(),
         links = treeData.descendants().slice(1);
-
+    
     // Normalize for fixed-depth.
     nodes.forEach(function(d){ d.y = d.depth * 180});
 
@@ -28,8 +28,7 @@ function update(source) {
         .attr("transform", function(d) {
             return "translate(" + radialPointY(source.x0,source.y0) + "," 
                 + radialPointX(source.x0,source.y0) + ")";
-        })
-        .on('click', click);
+        });
 
     // Add Circle for the nodes
     nodeEnter.append('circle')
@@ -37,7 +36,8 @@ function update(source) {
         .attr('r', 1e-6)
         .style("fill", function(d) {
             return d._children ? "lightsteelblue" : "#fff";
-        });
+        })
+    .on('click', click);
 
     // Add labels for the nodes
     nodeEnter.append('text')
